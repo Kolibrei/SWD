@@ -6,6 +6,6 @@ services:
       - ./www:/www
     ports:
       - 41061:22
-      - 41062:80
-      - 3306:3306
+      - 41062:80 # apache server: phpmyadmin -> /dashboard | /www/test.html
+      - 3306:3306 # mariaDB server
     restart: unless-stopped
