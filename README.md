@@ -13,7 +13,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
 It is advised to run python in a virtual environment:
 (for windows based machines)
 
-´´´
+```
 $ py -m venv .venv
 $ .\.venv\Scripts\activate
 ```
