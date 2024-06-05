@@ -5,7 +5,7 @@
 This step can be skipped if you have xampp installed on bare metall. \
 Xampp only allows connections from localhost by default. \
 Since the mysql server is running in docker we are tecnically not connecting from localhost. \
-Add an entry in the default mysql database like so: \
+Add an entry in the default mysql database like so: 
 
 ```
 CREATE USER 'root'@'%' IDENTIFIED BY 'root-password';
@@ -25,11 +25,11 @@ $ .\.venv\Scripts\activate
 
 The route for the xampp landing page is /dshboard/ \
 Route for Apache sites is /www/ \
-The ./www dir is mounted in the docker container. \
+The ./www dir is mounted in the docker container. 
 
 
 #### Tasks:
 
 TODO import the DB \
 TODO python webservice (possibly minimalist with requests lib) \
-TODO build functions for three or four predefined sql queries \
+TODO build functions for three or four predefined sql queries 
