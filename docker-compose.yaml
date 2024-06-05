@@ -1,0 +1,11 @@
+services:
+  xampp:
+    image: tomsik68/xampp:latest
+    container_name: xampp
+    volumes:
+      - ./www:/www
+    ports:
+      - 41061:22
+      - 41062:80
+      - 3306:3306
+    restart: unless-stopped
