@@ -7,4 +7,3 @@ db = mysql.connector.connect(
 )
 
 print(db)
-
