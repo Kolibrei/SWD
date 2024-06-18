@@ -4,8 +4,11 @@ services:
     container_name: xampp
     volumes:
       - ./www:/www
+      - ./apache2_conf/:/opt/lampp/apache2/conf
+      - ./backend:/backend/
+
     ports:
       - 41061:22
-      - 41062:80 # apache server: phpmyadmin -> /dashboard | /www/test.html
+      - 8181:80 # apache server: phpmyadmin -> /dashboard | /www/index.html
       - 3306:3306 # mariaDB server
     restart: unless-stopped
