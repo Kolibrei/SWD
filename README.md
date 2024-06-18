@@ -33,3 +33,13 @@ The ./www dir is mounted in the docker container.
 TODO import the DB \
 TODO python webservice (possibly minimalist with requests lib) \
 TODO build functions for three or four predefined sql queries 
+
+### potential addition to supervisord.conf
+
+```
+[program:python-backend]
+command=/backend/app.py
+autostart=true
+autorestart=unexpected
+redirect_stderr=true
+```
