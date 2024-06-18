@@ -21,7 +21,7 @@ $ py -m venv .venv
 $ .\.venv\Scripts\activate
 ```
 
-##### Apache webserver bundeled with xamp:
+##### Apache webserver bundeled with xampp:
 
 The route for the xampp landing page is /dshboard/ \
 Route for Apache sites is /www/ \
