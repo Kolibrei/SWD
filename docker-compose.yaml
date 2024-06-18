@@ -12,3 +12,9 @@ services:
       - 8181:80 # apache server: phpmyadmin -> /dashboard | /www/index.html
       - 3306:3306 # mariaDB server
     restart: unless-stopped
+#  python:
+#      image: python-3.10:latest
+#      depends_on:
+#        - xampp
+#      restart: unless-stopped
+#      entrypoint: [ "bash", "-c", "main.py"]
