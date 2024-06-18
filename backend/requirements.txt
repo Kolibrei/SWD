@@ -1,0 +1,4 @@
+mysql
+mysqlclient
+mysql-connector-python
+mod-wsgi
