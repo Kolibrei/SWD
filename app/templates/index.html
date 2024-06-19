@@ -210,15 +210,15 @@
         function loadContent(page) {
             document.getElementById('content').innerHTML = content[page];
         
-		 if (page === 'Tabelle') {
+		if (page === 'Tabelle') {
                 updateTable();
             }
         }
 
-
+        const query = {{ "/query" |tojson }}
 //Laden der Daten (Tabelle.json,Spielplan.json,Spieltag.json,Spieler.json)
         function updateTable() {
-            fetch('home.json')
+            fetch(query)
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.getElementById('data-table').querySelector('tbody');
