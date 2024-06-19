@@ -1,16 +1,18 @@
 services:
   xampp:
-    image: swd/web-app
-    build: ./
+    image: tomsik68/xampp:latest
     container_name: xampp
-    volumes:
-      - ./www:/www
-      - ./apache2_conf/:/opt/lampp/apache2/conf
-      - ./backend:/backend/
-#      - ./site_conf/:/etc/apache2/
+#    volumes:
+#      - ./www:/www
 
     ports:
       - 41061:22
       - 8181:80 # apache server: phpmyadmin -> /dashboard | /www/index.html
       - 3306:3306 # mariaDB server
     restart: unless-stopped
+  flask-app:
+    image: flask/app
+    build: ./
+    container_name: flask-app
+    volumes:
+      - ./app:/app
