@@ -19,9 +19,9 @@ def index():
 
 @app.route("/query", methods=['GET','POST'])
 def query():
-    with open('home.json') as json_data:
-        d = jsonify(json_data)
-    return d
+    if method == "POST":
+        with open('home.json') as json_data:
+            return json_data
     
 
 
