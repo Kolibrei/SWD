@@ -6,7 +6,7 @@ services:
     volumes:
       - ./app:/app
     ports:
-      - 81:81
+      - 80:80
     restart: unless-stopped
   mariadb:
     image: mysql
