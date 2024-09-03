@@ -7,7 +7,6 @@ services:
       - ./app:/app
     ports:
       - 80:80
-    restart: unless-stopped
   mariadb:
     image: mysql
     container_name: mysql
