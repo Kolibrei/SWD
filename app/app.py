@@ -1,13 +1,15 @@
-import mysql.connector
+import mysql
 from flask import Flask, render_template, request, jsonify
 import json
 
-## connect to mariaDB in xampp container
-#db = mysql.connector.connect(
-#    host="127.0.0.1",
-#    user="root",
-#    password="password"
-#)
+## connect to mariaDB
+db = mysql.connector.connect(
+    password="password",
+    database="liga",
+    host="127.0.0.1",
+    user="root",
+
+)
 
 # print(db)
 
@@ -19,12 +21,22 @@ def index():
 
 @app.route("/query", methods=['GET','POST'])
 def query():
-    if method == "POST":
-        with open('home.json') as json_data:
-            return json_data
-    
+    if request.method == "POST":
+        # Checking if the table exists on the MySQL server
+        cursor = db.cursor()
+        cursor.execute("SHOW TABLES")
+
+        for tables in cursor:
+            print(tables)
+
+        # Closing the cursor
+        cursor.close()
+        #with open('home.json') as json_data:
+        return
+
 
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=81)
+
 

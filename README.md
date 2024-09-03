@@ -11,7 +11,6 @@ Add an entry in the default mysql database like so:
 CREATE USER 'root'@'%' IDENTIFIED BY 'root-password';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
 ```
-noah stinkt
 
 It is advised to run python in a virtual environment: \
 (for windows based machines)

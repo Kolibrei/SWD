@@ -1,15 +1,4 @@
 services:
-  xampp:
-    image: tomsik68/xampp:latest
-    container_name: xampp
-#    volumes:
-#      - ./www:/www
-
-    ports:
-      - 41061:22
-      - 8181:80 # apache server: phpmyadmin -> /dashboard
-      - 3306:3306 # mariaDB server
-    restart: unless-stopped
   flask-app:
     image: flask/app
     build: ./
@@ -19,3 +8,13 @@ services:
     ports:
       - 81:81
     restart: unless-stopped
+  mariadb:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: liga.sql
+    ports:
+    - "3306:3306"
+    volumes:
+    - "./liga.sql:/docker-entrypoint-initdb.d/1.sql"
