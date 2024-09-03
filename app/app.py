@@ -1,13 +1,14 @@
 import mysql
+import mysql.connector
 from flask import Flask, render_template, request, jsonify
 import json
 
-## connect to mariaDB
+## connect to myqsl
 db = mysql.connector.connect(
+    user="root",
     password="password",
     database="liga",
-    host="127.0.0.1",
-    user="root",
+    host="localhost",
 
 )
 

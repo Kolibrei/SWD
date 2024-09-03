@@ -13,8 +13,8 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: liga.sql
+      MYSQL_DATABASE: liga
     ports:
     - "3306:3306"
     volumes:
-    - "./liga.sql:/docker-entrypoint-initdb.d/1.sql"
+    - "./liga.sql:/docker-entrypoint-initdb.d/liga.sql"
