@@ -112,12 +112,13 @@
                 <button onclick="updateTable()">Aktualisieren</button>
 				<p></p>
                 
-                <select id="service-dropdown" onchange="serviceSelected()">
+<!--                <select id="service-dropdown" onchange="serviceSelected()">
                     <option value="service1">Spieltag 1</option>
                     <option value="service2">Spieltag 2</option>
                     <option value="service3">Spieltag 3</option>
-                </select>
-                <button onclick="updateTable()">aktueller Spieltag</button>
+                </select> 
+-->
+                <button onclick="updateTable()">Neue Saison</button>
                 <div id="service-description">
                     <!-- Beschreibung der ausgewählten Spieltag -->
                     </div> 
@@ -125,8 +126,9 @@
                     <thead>
                         <tr>
                             <th>Mannschaft1</th>
-                            <th>Zwischenstand</th>
+                            <th>Tore Heim</th>
                             <th>Mannschaft2</th>
+                            <th>Tore Gast</th>
                             <th>Spielort</th>
                             <th>Anpfiff</th>
                         </tr>
@@ -137,37 +139,7 @@
                 </table>
 
             `,
-            Spieltag: `
-                <h1>Spieltag</h1>
-                <button onclick="updateTable()">Aktualisieren</button>
-                <p></p>
 
-                <select id="service-dropdown" onchange="serviceSelected()">
-                    <option value="service1">Alle Mannschaften</option>
-                    <option value="service2">Mannschaften 1</option>
-                    <option value="service2">Mannschaften 2</option>
-                    <option value="service3">Mannschaften 3</option>
-                </select>
-                <button onclick="updateTable()">aktueller Spieltag</button>
-                <div id="service-description">
-                    <!-- Beschreibung der ausgewählten Spieltag -->
-                </div> 
-
-                
-                <table id="data-table">
-                    <thead>
-                        <tr>
-                            <th>Mannschaft1</th>
-                            <th>Zwischenstand</th>
-                            <th>Mannschaft2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Daten werden hier geladen -->
-                    </tbody>
-                </table>
-
-            `,
             Spieler: `
                 <h1>Spieler</h1>
                 <button onclick="updateTable()">Aktualisieren</button>
@@ -183,12 +155,6 @@
                     <!-- Beschreibung der ausgewählten Mannschaft -->
                 </div>
 
-                <select id="service-dropdown" onchange="serviceSelected()">
-                    <option value="service1">All Position</option>
-                    <option value="service1">Position 1</option>
-                    <option value="service2">Position 2</option>
-                    <option value="service3">Position 3</option>
-                </select>
 
                 <label>Search:</label><input type="text" name="SearchPlayer" size="20">
 
@@ -197,7 +163,7 @@
                         <tr>
                             <th>name</th>
                             <th>team</th>
-                            <th>position</th>
+                            <th>Tore</th>
                         </tr>
                     </thead>
                     <tbody>
