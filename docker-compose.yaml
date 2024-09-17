@@ -1,16 +1,16 @@
 services:
-  flask-app:
-    image: flask/app
-    build: ./
-    links:
-      - mysql
-    container_name: flask-app
-    volumes:
-      - ./app:/app
-    ports:
-      - 80:80
-    depends_on:
-      - mysql
+  #flask-app:
+  #  image: flask/app
+  #  build: ./
+  #  links:
+  #    - mysql
+  #  container_name: flask-app
+  #  volumes:
+  #    - ./app:/app
+  #  ports:
+  #    - 80:80
+  #  depends_on:
+  #    - mysql
 
   mysql:
     image: mysql

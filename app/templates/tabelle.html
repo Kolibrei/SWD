@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <title>Seite mit Sidebar</title>
+</head>
+<body>
+    <div class="sidebar">
+	<h2>Sidebar</h2>
+        <a href="{{ url_for("spieler") }}">Spieler</a>
+		<a href="{{ url_for("tabelle") }}">Tabelle</a>
+    </div>
+    <div class="content" id="content">
+        <h1>Spieler</h1>
+        <table id="data-table" border="1">
+            <thead>
+                <tr>
+                    <th>Platz</th>
+                    <th>Verein</th>
+                    <th>Siege</th>
+                    <th>Niederlagen</th>
+                    <th>Punkte</th>
+                    <th># Spiele</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+        <script>
+            // Fetch data from the Flask backend
+            fetch('/tabelle_query')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#data-table tbody');
+                    data.forEach(row => {
+                        const tr = document.createElement('tr');
+                        row.forEach(cell => {
+                            const td = document.createElement('td');
+                            td.textContent = cell;
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        </script>
+</div>
+</body>
