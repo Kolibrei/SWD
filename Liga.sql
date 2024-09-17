@@ -130,12 +130,12 @@ CREATE TABLE `Tabelle` (
 --
 
 INSERT INTO `Tabelle` (`Tabelle_ID`, `Vereins_ID`, `Punkte`, `Siege`, `Niederlagen`, `Platz`) VALUES
-(1, 3, NULL, NULL, NULL, NULL),
-(2, 1, NULL, NULL, NULL, NULL),
-(3, 6, NULL, NULL, NULL, NULL),
-(4, 4, NULL, NULL, NULL, NULL),
-(5, 2, NULL, NULL, NULL, NULL),
-(6, 5, NULL, NULL, NULL, NULL);
+(1, 3, 0, 0, 0, 0),
+(2, 1, 0, 0, 0, 0),
+(3, 6, 0, 0, 0, 0),
+(4, 4, 0, 0, 0, 0),
+(5, 2, 0, 0, 0, 0),
+(6, 5, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
