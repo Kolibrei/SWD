@@ -2,12 +2,17 @@ services:
   flask-app:
     image: flask/app
     build: ./
+    links:
+      - mysql
     container_name: flask-app
     volumes:
       - ./app:/app
     ports:
       - 80:80
-  mariadb:
+    depends_on:
+      - mysql
+
+  mysql:
     image: mysql
     container_name: mysql
     environment:

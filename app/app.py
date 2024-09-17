@@ -9,7 +9,8 @@ db = mysql.connector.connect(
     user="root",
     password="password",
     database="liga",
-    host="localhost",
+    host="mysql",
+    port = "3306"
 
 )
 
