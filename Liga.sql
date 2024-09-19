@@ -186,6 +186,25 @@ ALTER TABLE `Spieler`
   ADD KEY `Spieler_PLZ` (`Spieler_PLZ`),
   ADD KEY `Vereins_ID` (`Vereins_ID`);
 
+
+INSERT INTO `Spieler` (`Spieler_ID`, `Name`, `Vorname`, `Vereins_ID`, `Spieler_PLZ`, `Tore`, `Tore_gesamt`) VALUES
+(1, 'Mueller', 'Thomas', 1, 10178, 5, 50),
+(2, 'Schmidt', 'Manuel', 1, 10178, 3, 30),
+ 
+(3, 'Schneider', 'Peter', 2, 50672, 2, 20),
+(4, 'Klein', 'Frank', 2, 50672, 4, 40),
+ 
+(5, 'Mayer', 'Lukas', 3, 6114, 1, 15),
+(6, 'Fischer', 'Stefan', 3, 6114, 6, 60),
+ 
+(7, 'Weber', 'Hans', 4, 21035, 2, 25),
+(8, 'Lehmann', 'Jan', 4, 21035, 4, 45),
+ 
+(9, 'Walter', 'Max', 5, 80331, 3, 35),
+(10, 'Hoffmann', 'Karl', 5, 80331, 5, 55),
+ 
+(11, 'Koenig', 'Paul', 6, 18069, 1, 10),
+(12, 'Bauer', 'Tim', 6, 18069, 7, 70);
 --
 -- Indizes für die Tabelle `Tabelle`
 --

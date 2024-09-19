@@ -14,14 +14,15 @@
             <a href="{{ url_for("games") }}">Spiele</a>
         </div>
     <div class="content" id="content">
-        <h1>Spieler</h1>
+        <h1>Spiele</h1>
         <table id="data-table" border="1">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Vorname</th>
-                    <th>Verein</th>
-                    <th>Tore</th>
+                    <th>Heim</th>
+                    <th>Heimtore</th>
+                    <th>Gast</th>
+                    <th>Gast Tore</th>
+                    <th>Spielort</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +31,7 @@
         </table>
         <script>
             // Fetch data from the Flask backend
-            fetch('/spieler_query')
+            fetch('/games_query')
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.querySelector('#data-table tbody');

@@ -8,12 +8,13 @@
 </head>
 <body>
     <div class="sidebar">
-	<h2>Sidebar</h2>
-        <a href="{{ url_for("spieler") }}">Spieler</a>
-		<a href="{{ url_for("tabelle") }}">Tabelle</a>
-    </div>
+        <h2>Sidebar</h2>
+            <a href="{{ url_for("spieler") }}">Spieler</a>
+            <a href="{{ url_for("tabelle") }}">Tabelle</a>
+            <a href="{{ url_for("games") }}">Spiele</a>
+        </div>
     <div class="content" id="content">
-        <h1>Spieler</h1>
+        <h1>Tabelle</h1>
         <table id="data-table" border="1">
             <thead>
                 <tr>
