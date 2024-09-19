@@ -1,9 +1,8 @@
-import mysql
-import mysql.connector
-from flask import Flask, render_template, request, jsonify
-import json
 import sys
 import time
+import mysql
+import mysql.connector
+from flask import Flask, render_template, jsonify
 
 ## connect to myqsl
 for i in range(0, 20):
@@ -28,17 +27,21 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+
 @app.route("/spieler", methods=["GET", "POST"])
 def spieler():
     return render_template("spieler.html")
+
 
 @app.route("/tabelle", methods=["GET", "POST"])
 def tabelle():
     return render_template("tabelle.html")
 
+
 @app.route("/games", methods=["GET", "POST"])
 def games():
     return render_template("games.html")
+
 
 @app.route("/spieler_query", methods=["GET", "POST"])
 def spieler_query():
@@ -52,6 +55,7 @@ def spieler_query():
     cursor.close()
     return jsonify(result)
 
+
 @app.route("/games_query", methods=["GET", "POST"])
 def games_query():
     cursor = db.cursor()
@@ -63,6 +67,7 @@ def games_query():
     for x in result:
         print(x, file=sys.stderr)
     return jsonify(result)
+
 
 @app.route("/tabelle_query", methods=["GET", "POST"])
 def tabelle_query():
@@ -76,16 +81,14 @@ def tabelle_query():
         print(x, file=sys.stderr)
     return jsonify(result)
 
+
 @app.route("/refresh", methods=["GET", "POST"])
 def refresh():
     cursor = db.cursor()
-    cursor.execute(
-        "TRUNCATE TABLE Spiele;"
-    )
+    cursor.execute("TRUNCATE TABLE Spiele;")
     cursor.execute(
         "INSERT INTO Spiele (Verein1_ID, Verein2_ID) SELECT V1.VereinsID AS Verein1_ID, V2.VereinsID AS Verein2_ID FROM Vereine V1 CROSS JOIN Vereine V2 WHERE V1.VereinsID <> V2.VereinsID;"
     )
-
     result = cursor.fetchall()
     cursor.close()
     for x in result:
