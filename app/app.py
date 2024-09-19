@@ -76,6 +76,22 @@ def tabelle_query():
         print(x, file=sys.stderr)
     return jsonify(result)
 
+@app.route("/refresh", methods=["GET", "POST"])
+def refresh():
+    cursor = db.cursor()
+    cursor.execute(
+        "TRUNCATE TABLE Spiele;"
+    )
+    cursor.execute(
+        "INSERT INTO Spiele (Verein1_ID, Verein2_ID) SELECT V1.VereinsID AS Verein1_ID, V2.VereinsID AS Verein2_ID FROM Vereine V1 CROSS JOIN Vereine V2 WHERE V1.VereinsID <> V2.VereinsID;"
+    )
+
+    result = cursor.fetchall()
+    cursor.close()
+    for x in result:
+        print(x, file=sys.stderr)
+    return jsonify(result)
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=80)
