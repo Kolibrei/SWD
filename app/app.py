@@ -2,7 +2,7 @@ import sys
 import time
 import mysql
 import mysql.connector
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 
 ## connect to myqsl
 for i in range(0, 20):
@@ -12,7 +12,7 @@ for i in range(0, 20):
             user="root",
             password="password",
             database="liga",
-            host="localhost",
+            host="mysql",
             port="3306",
         )
     except:
@@ -60,7 +60,7 @@ def spieler_query():
 def games_query():
     cursor = db.cursor()
     cursor.execute(
-        "SELECT V1.Name AS Heim, G.Tore_Verein1 AS Heimtore, V2.Name AS Gast, G.Tore_Verein2 AS Gasttore, O.Name AS Ort FROM Spiele G JOIN Vereine V1 ON G.Verein1_ID = V1.VereinsID JOIN Vereine V2 ON G.Verein2_ID = V2.VereinsID JOIN Ort O ON V1.Verein_PLZ = O.PLZ;"
+        "SELECT G.Spiel_ID, V1.Name AS Heim, G.Tore_Verein1 AS Heimtore, V2.Name AS Gast, G.Tore_Verein2 AS Gasttore, O.Name AS Ort FROM Spiele G JOIN Vereine V1 ON G.Verein1_ID = V1.VereinsID JOIN Vereine V2 ON G.Verein2_ID = V2.VereinsID JOIN Ort O ON V1.Verein_PLZ = O.PLZ;"
     )
     result = cursor.fetchall()
     cursor.close()
@@ -94,6 +94,39 @@ def refresh():
     for x in result:
         print(x, file=sys.stderr)
     return jsonify(result)
+
+@app.route('/save_data_heim', methods=['POST'])
+def save_data_heim():
+    data = request.get_json()
+    row_id = data['id']
+    heimtore = data['Heimtore']
+    cursor = db.cursor()
+    cursor.execute(
+        "UPDATE Spiele SET Tore_Verein1 =" + heimtore + " WHERE Spiel_ID = " + str(row_id) + ";"
+    )
+    cursor.close()
+    return jsonify({"message": "Data saved successfully"}), 200
+
+@app.route('/save_data_gast', methods=['POST'])
+def save_data_gast():
+    data = request.get_json()
+    row_id = data['id']
+    gasttore = data['Gasttore']
+    cursor = db.cursor()
+    cursor.execute(
+        "UPDATE Spiele SET Tore_Verein2 =" + gasttore + " WHERE Spiel_ID = " + str(row_id) + ";"
+    )
+    cursor.close()
+    return jsonify({"message": "Data saved successfully"}), 200
+
+
+    ## Update the games data with the new scores
+    #if row_index is not None and 0 <= row_index < len(games_data):
+    #    games_data[row_index]['heimtore'] = heimtore
+    #    games_data[row_index]['gasttore'] = gasttore
+    #    return jsonify({"message": "Data saved successfully"}), 200
+    #else:
+    #    return jsonify({"message": "Invalid row index"}), 400
 
 
 if __name__ == "__main__":

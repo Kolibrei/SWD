@@ -14,58 +14,106 @@
             <a href="{{ url_for("games") }}">Spiele</a>
         </div>
     <div class="content" id="content">
-        <button onclick="refresh()">refresh</button>
+        <button onclick="refresh()">Reset Table for New Season w/o Points</button>
         <h1>Spiele</h1>
-        <table id="data-table" border="1">
-            <thead>
-                <tr>
-                    <th>Heim</th>
-                    <th>Heimtore</th>
-                    <th>Gast</th>
-                    <th>Gast Tore</th>
-                    <th>Spielort</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Data will be inserted here -->
-            </tbody>
-        </table>
-        <script>
-            // Fetch data from the Flask backend
-            fetch('/games_query')
-                .then(response => response.json())
-                .then(data => {
-                    const tableBody = document.querySelector('#data-table tbody');
-                    data.forEach(row => {
-                        const tr = document.createElement('tr');
-                        row.forEach(cell => {
-                            const td = document.createElement('td');
-                            td.textContent = cell;
-                            tr.appendChild(td);
-                        });
-                        tableBody.appendChild(tr);
-                    });
-                })
-                .catch(error => console.error('Error fetching data:', error));
+            <table id="gamesTable" border="1">
+                <thead>
+                    <tr>
+                        <th>Heim</th>
+                        <th>Heimtore</th>
+                        <th>Gast</th>
+                        <th>Gasttore</th>
+                        <th>Spielort</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        
+            <script>
+                function refresh() {
+                    fetch('/refresh')
+                    return;
+                    }
 
-            function refresh() {
-                fetch('/refresh')
-                .then(response => response.json())
-                .then(data => {
-                    const tableBody = document.querySelector('#data-table tbody');
-                    data.forEach(row => {
-                        const tr = document.createElement('tr');
-                        row.forEach(cell => {
-                            const td = document.createElement('td');
-                            td.textContent = cell;
-                            tr.appendChild(td);
-                        });
-                        tableBody.appendChild(tr);
-                    });
-                })
-                .catch(error => console.error('Error fetching data:', error));
-                return;
+                async function fetchGames() {
+                    const response = await fetch('/games_query');
+                    const data = await response.json();
+                    return data;
                 }
-        </script>
-</div>
+        
+                function createTableRow(game) {
+                    const row = document.createElement('tr');
+        
+                    const heimCell = document.createElement('td');
+                    heimCell.textContent = game[1];
+                    row.appendChild(heimCell);
+        
+                    const heimtoreCell = document.createElement('td');
+                    const heimtoreInput = document.createElement('input');
+                    heimtoreInput.type = 'number';
+                    heimtoreInput.value = game[2] || '';
+                    heimtoreInput.addEventListener('change', () => saveData_heim(game[0], 'Heimtore', heimtoreInput.value));
+                    heimtoreCell.appendChild(heimtoreInput);
+                    row.appendChild(heimtoreCell);
+        
+                    const gastCell = document.createElement('td');
+                    gastCell.textContent = game[3];
+                    row.appendChild(gastCell);
+        
+                    const gasttoreCell = document.createElement('td');
+                    const gasttoreInput = document.createElement('input');
+                    gasttoreInput.type = 'number';
+                    gasttoreInput.value = game[4] || '';
+                    gasttoreInput.addEventListener('change', () => saveData_gast(game[0], 'Gasttore', gasttoreInput.value));
+                    gasttoreCell.appendChild(gasttoreInput);
+                    row.appendChild(gasttoreCell);
+        
+                    const spielortCell = document.createElement('td');
+                    spielortCell.textContent = game[5];
+                    row.appendChild(spielortCell);
+        
+                    return row;
+                }
+        
+                async function saveData_heim(id, field, value) {
+                    const response = await fetch('/save_data_heim', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id, [field]: value })
+                    });
+                    if (!response.ok) {
+                        console.error('Failed to save data');
+                    }
+                }
+
+                async function saveData_gast(id, field, value) {
+                    const response = await fetch('/save_data_gast', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id, [field]: value })
+                    });
+                    if (!response.ok) {
+                        console.error('Failed to save data');
+                    }
+                }
+        
+                async function populateTable() {
+                    const games = await fetchGames();
+                    const tbody = document.querySelector('#gamesTable tbody');
+                    games.forEach(game => {
+                        const row = createTableRow(game);
+                        tbody.appendChild(row);
+                    });
+                }
+        
+                document.addEventListener('DOMContentLoaded', populateTable);
+            </script>
+        </body>
+    </div>
 </body>
+</html>
