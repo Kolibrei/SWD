@@ -11,7 +11,7 @@ The app and database are served from separate Docker containers.
 ### What does it do?
 
 Flask provides a webserver which can seamlessly serve HTML from so called templates. 
-Usually these templates are used in conjuntion with Jinja2, to provide interaction or dynamic content on a webpage. 
+Usually these templates are used in conjunction with Jinja2, to provide interaction or dynamic content on a webpage. 
 We decided to use pure javascript instead, because Jinja tends to be kinda clunky. 
 Besides implementing it with Javascript was a good learning experience, since non of us had worked with it before. 
 
