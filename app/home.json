@@ -1,7 +1,0 @@
-[
-    { "name": "Max Mustermann", "email": "max@example.com", "age": 29 },
-    { "name": "Erika Musterfrau", "email": "erika@example.com", "age": 34 },
-    { "name": "John Doe", "email": "john@example.com", "age": 42 },
-    { "name": "james Doe", "email": "james@example.com", "age": 42 },
-    { "name": "Manni Musterfrau", "email": "Manni@example.com", "age": 48 }
-]

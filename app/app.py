@@ -95,38 +95,39 @@ def refresh():
         print(x, file=sys.stderr)
     return jsonify(result)
 
-@app.route('/save_data_heim', methods=['POST'])
+
+@app.route("/save_data_heim", methods=["POST"])
 def save_data_heim():
     data = request.get_json()
-    row_id = data['id']
-    heimtore = data['Heimtore']
+    row_id = data["id"]
+    heimtore = data["Heimtore"]
     cursor = db.cursor()
     cursor.execute(
-        "UPDATE Spiele SET Tore_Verein1 =" + heimtore + " WHERE Spiel_ID = " + str(row_id) + ";"
+        "UPDATE Spiele SET Tore_Verein1 ="
+        + heimtore
+        + " WHERE Spiel_ID = "
+        + str(row_id)
+        + ";"
     )
     cursor.close()
     return jsonify({"message": "Data saved successfully"}), 200
 
-@app.route('/save_data_gast', methods=['POST'])
+
+@app.route("/save_data_gast", methods=["POST"])
 def save_data_gast():
     data = request.get_json()
-    row_id = data['id']
-    gasttore = data['Gasttore']
+    row_id = data["id"]
+    gasttore = data["Gasttore"]
     cursor = db.cursor()
     cursor.execute(
-        "UPDATE Spiele SET Tore_Verein2 =" + gasttore + " WHERE Spiel_ID = " + str(row_id) + ";"
+        "UPDATE Spiele SET Tore_Verein2 ="
+        + gasttore
+        + " WHERE Spiel_ID = "
+        + str(row_id)
+        + ";"
     )
     cursor.close()
     return jsonify({"message": "Data saved successfully"}), 200
-
-
-    ## Update the games data with the new scores
-    #if row_index is not None and 0 <= row_index < len(games_data):
-    #    games_data[row_index]['heimtore'] = heimtore
-    #    games_data[row_index]['gasttore'] = gasttore
-    #    return jsonify({"message": "Data saved successfully"}), 200
-    #else:
-    #    return jsonify({"message": "Invalid row index"}), 400
 
 
 if __name__ == "__main__":
